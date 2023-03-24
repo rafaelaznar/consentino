@@ -47,7 +47,7 @@ import java.util.ArrayList;
 
 public class JwtHelper {
 
-    private static final String SECRET = "1234qwerty";
+    private static final String SECRET = "1234qwerty1234qwerty1234qwerty1234qwerty";
     private static final String ISSUER = "BLASTER";
 
     private static SecretKey secretKey() {
