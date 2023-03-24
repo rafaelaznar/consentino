@@ -79,7 +79,7 @@ public class AppExceptionHandler {
         return new ResponseEntity<>(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    @ExceptionHandler(Exception.class)
+    @ExceptionHandler(JWTException.class)
     public ResponseEntity<?> JWTException(JWTException ex, WebRequest request) {
         ErrorResponseBean errorDetails
                = new ErrorResponseBean(new Date(), HttpStatus.UNAUTHORIZED.name(), ex.getMessage(), request.getDescription(false));
