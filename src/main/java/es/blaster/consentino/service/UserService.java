@@ -48,18 +48,15 @@ import es.blaster.consentino.repository.UserRepository;
 
 @Service
 public class UserService {
-
-    @Autowired
-    UsertypeService oUsertypeService;
-
+    
+    private final UsertypeService oUsertypeService;
     private final UserRepository oDeveloperRepository;
     private final UsertypeRepository oUsertypeRepository;
-    private final AuthService oAuthService;
-
-    private final String ANDAMIO_DEFAULT_PASSWORD = "73ec8dee81ea4c9e7515d63c9e5bbb707c7bc4789363c5afa401d3aa780630f6";
+    private final AuthService oAuthService;    
 
     @Autowired
-    public UserService(UserRepository oUserRepository, UsertypeRepository oUsertypeRepository, AuthService oAuthService) {
+    public UserService(UserRepository oUserRepository, UsertypeRepository oUsertypeRepository, UsertypeService oUsertypeService, AuthService oAuthService) {
+        this.oUsertypeService=oUsertypeService;
         this.oDeveloperRepository = oUserRepository;
         this.oUsertypeRepository = oUsertypeRepository;
         this.oAuthService = oAuthService;
