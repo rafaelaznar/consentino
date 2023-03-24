@@ -30,7 +30,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package es.blaster.consentino.service;
 
 import javax.servlet.http.HttpServletRequest;
@@ -79,7 +78,7 @@ public class AuthService {
         if (oUserSessionEntity == null) {
             throw new UnauthorizedException("this request is only allowed to admin role");
         } else {
-            if (!oUserSessionEntity.getUsertype().getId().equals(1)) {
+            if (oUserSessionEntity.getUsertype().getId() != 1) {
                 throw new UnauthorizedException("this request is only allowed to admin role");
             }
         }

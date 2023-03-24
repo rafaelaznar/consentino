@@ -30,9 +30,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package es.blaster.consentino.service;
-
 
 import es.blaster.consentino.repository.UsertypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,15 +46,15 @@ import es.blaster.consentino.repository.UserRepository;
 
 @Service
 public class UserService {
-    
+
     private final UsertypeService oUsertypeService;
     private final UserRepository oDeveloperRepository;
     private final UsertypeRepository oUsertypeRepository;
-    private final AuthService oAuthService;    
+    private final AuthService oAuthService;
 
     @Autowired
     public UserService(UserRepository oUserRepository, UsertypeRepository oUsertypeRepository, UsertypeService oUsertypeService, AuthService oAuthService) {
-        this.oUsertypeService=oUsertypeService;
+        this.oUsertypeService = oUsertypeService;
         this.oDeveloperRepository = oUserRepository;
         this.oUsertypeRepository = oUsertypeRepository;
         this.oAuthService = oAuthService;
@@ -74,7 +72,7 @@ public class UserService {
         ValidationHelper.validateStringLength(oDeveloperEntity.getLastname(), 2, 50, "lastname (between 2-50 chars)");
         ValidationHelper.validateEmail(oDeveloperEntity.getEmail(), "user email");
         ValidationHelper.validateLogin(oDeveloperEntity.getUsername(), "username");
-        ValidationHelper.validateStringLength(oDeveloperEntity.getPassword(),64,64, "password must be SHA256 encripted");
+        ValidationHelper.validateStringLength(oDeveloperEntity.getPassword(), 64, 64, "password must be SHA256 encripted");
         if (oDeveloperRepository.existsByUsername(oDeveloperEntity.getUsername())) {
             throw new ValidationException("username repeated");
         }
@@ -114,14 +112,14 @@ public class UserService {
     public Long create(UserEntity oNewDeveloperEntity) {
         oAuthService.OnlyAdmins();
         validate(oNewDeveloperEntity);
-        oNewDeveloperEntity.setId(0L);        
+        oNewDeveloperEntity.setId(0L);
         return oDeveloperRepository.save(oNewDeveloperEntity).getId();
     }
 
     public Long update(UserEntity oDeveloperEntity) {
         validate(oDeveloperEntity.getId());
         oAuthService.OnlyAdmins();
-        UserEntity oOldDeveloperEntity = oDeveloperRepository.getById(oDeveloperEntity.getId());        
+        UserEntity oOldDeveloperEntity = oDeveloperRepository.getById(oDeveloperEntity.getId());
         return oDeveloperRepository.save(oDeveloperEntity).getId();
     }
 
@@ -135,6 +133,5 @@ public class UserService {
             return id;
         }
     }
-
 
 }
