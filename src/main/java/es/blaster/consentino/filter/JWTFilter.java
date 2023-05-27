@@ -43,9 +43,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import es.blaster.consentino.helper.JwtHelper;
 import java.util.ArrayList;
+import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 @Component
+@Order(Ordered.LOWEST_PRECEDENCE)
 public class JWTFilter implements Filter {
 
     @Override

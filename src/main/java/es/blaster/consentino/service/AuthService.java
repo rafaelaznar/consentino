@@ -69,7 +69,7 @@ public class AuthService {
         if (oUserSessionEntity != null) {
             return oUserSessionEntity;
         } else {
-            throw new ResourceNotFoundException("session user not found");
+            throw new ResourceNotFoundException("no active session");
         }
     }
 
